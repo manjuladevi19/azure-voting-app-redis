@@ -4,7 +4,7 @@ do {
     Write-Output "[$env:STAGE_NAME] Starting container [Attempt: $count]"
     
 
-    $testStart = Invoke-WebRequest -Uri http://localhost:8080/login?from=%2F
+    $testStart = Invoke-WebRequest -Uri https://postman-echo.com/
     
     if ($testStart.statuscode -eq '200') {
         $started = $true
