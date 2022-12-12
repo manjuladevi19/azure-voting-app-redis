@@ -19,35 +19,18 @@ pipeline {
             """
          }
       }
-	  stage('Start test app') {
-         steps {
-            pwsh(script: """
-               docker-compose up -d
-               ./scripts/test_container.ps1
-            """)
-         }
-         post {
-            success {
-               echo "App started successfully :)"
+	 stage('Push Container') {
+            steps {
+                echo "Workspace is $WORKSPACE"
+				dir("$WORKSPACE/azurevote"){
+				script{
+				docker.withRegistry('https://index.docker.io/v1/', 'DockerHub'){
+				def image = docker.build('manjuladevi123/jenkins-course:latest')
+				image.push()
+				    }
+				  }
+			   }
             }
-            failure {
-               echo "App failed to start :("
-            }
-         }
-      }
-      stage('Run Tests') {
-         steps {
-            pwsh(script: """
-               pytest ./tests/test_sample.py
-            """)
-         }
-      }
-      stage('Stop test app') {
-         steps {
-            pwsh(script: """
-               docker-compose down
-            """)
-         }
-      }
+        }
     }
 }
