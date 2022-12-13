@@ -23,7 +23,7 @@ pipeline {
                steps {
                   sleep(time: 30, unit: 'SECONDS')
                    powershell """
-                  C:\\Windows\\System32\\wsl.exe -- sudo trivy manjuladevi123/jenkins-course
+                  C:\Windows\System32\wsl.exe -- sudo trivy manjuladevi123/jenkins-course
                    """
                }
             }
