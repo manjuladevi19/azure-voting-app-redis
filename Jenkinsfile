@@ -24,7 +24,7 @@ pipeline {
                 echo "Workspace is $WORKSPACE"
 				dir("$WORKSPACE/azurevote") {
 				script {
-				docker.withRegistry('https://index.docker.io/','DockerHub') {
+				docker.withRegistry('https://index.docker.io/','DockerHub',org.jenkinsci.plugins.workflow.cps.CpsClosure2@26fffb19) {
 				def image = docker.build('manjuladevi123/jenkins-course:latest')
 				image.push()
 				    }
