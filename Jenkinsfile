@@ -22,9 +22,9 @@ pipeline {
 	 stage('Run Trivy') {
                steps {
                   sleep(time: 30, unit: 'SECONDS')
-                   powershell(script: """
+                   powershell """
                   C:\\Windows\\System32\\wsl.exe -- sudo trivy manjuladevi123/jenkins-course
-                   """)
+                   """
                }
             }
     }
